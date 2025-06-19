@@ -16,9 +16,12 @@ public class PostController {
     private PostService postService;
 
     //게시물 추가
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> addPost(@RequestBody AddPostReqDto addPostReqDto) {
-        return ResponseEntity.ok(PostService.addPost(addPostReqDto));
+        return ResponseEntity.ok(postService.addPost(addPostReqDto));
     }
+
+
+    //게시물 조회
 
 }
