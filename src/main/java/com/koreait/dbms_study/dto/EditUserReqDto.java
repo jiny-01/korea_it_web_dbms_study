@@ -6,19 +6,17 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-
-public class AddUserReqDto {
+public class EditUserReqDto {
+    private Integer userId;
     private String username;
     private String email;
-    private Integer userId;
 
+    //User 객체 가져옴
     public User toEntity() {
         return User.builder()
                 .userId(this.userId)
                 .username(this.username)
                 .email(this.email)
                 .build();
-        //addUserReqDto 를 toEntity 로 받아 객체로 만듦
-
     }
 }

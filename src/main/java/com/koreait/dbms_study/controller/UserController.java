@@ -1,6 +1,7 @@
 package com.koreait.dbms_study.controller;
 
 import com.koreait.dbms_study.dto.AddUserReqDto;
+import com.koreait.dbms_study.dto.EditUserReqDto;
 import com.koreait.dbms_study.service.UserService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //요청받기&처리 - JSON 데이터를 DTO로 변환받기
+    //추가 => 요청받기&처리 - JSON 데이터를 DTO로 변환받기
     @PostMapping("/add")
     public ResponseEntity<?> addUser(@RequestBody AddUserReqDto addUserReqDto) {
         return ResponseEntity.ok(userService.addUser(addUserReqDto));
-        //ok 에 맵에서의 반환값(응답) return 하도록 넣음
-
     }
+    //응답 상태 코드를 200 OK로 만들고,
+    // 그 안에 userService.addUser(...)의 반환값을 넣음
+    //userService.addUser(...)의 반환값을 그대로 응답에 실어서 클라이언트에 전달
 
     //조회
     @GetMapping("/get/list")
@@ -39,8 +41,49 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserList());
     }
 
+    //단건 조회
     @GetMapping("/get")
     public ResponseEntity<?> getUserByUserId(@RequestParam Integer userId) {
         return ResponseEntity.ok(userService.getUserByUserId(userId));
     }
+    //user/get?userId=1
+
+//    @GetMapping("/get/{userId}")
+//    public ResponseEntity<?> getUserByUserId(@PathVariable Integer userId) {
+//        return ResponseEntity.ok(userService.getUserByUserId(userId));
+//    }
+      //@PathVariable
+//    //userId를 ?가 아니라 바로 /뒤에 적는 방법으로 요청 보낼 수 있음
+//    //user/get/1 이런 형식
+
+    //검색 기능 추가 키워드=입력값 형식을 requestparam 으로 받을 수 있음
+
+
+    //요청 메소드 중 DELETE, PUT 이 있는데 POST 로
+    //-> 조회(GET) 빼곤 가급적 POST
+    //보안상 이유, 호환성 이유
+    //일부 브라우저, 서버가 PUT, DELETE 를 완벽히 지원하지 않음
+    //HTML <form>가 GET, POST 만 지원
+
+
+    //post -> body, param 둘 다가능
+    //하나만 받아올 땐 param
+    //get -> param 만 가능
+
+
+    //수정 -> post 로 받음
+    @PostMapping("/edit")
+    public ResponseEntity<?> editUser(@RequestBody EditUserReqDto editUserReqDto) {
+        return ResponseEntity.ok(userService.editUser(editUserReqDto));
+    }
+    //editUser 의 반환(수정 성공/실패)을 ok로 사용자에게 표시함
+
+
+    //유저 삭제
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(userService.removeUser(userId));
+    }
+
+
 }

@@ -31,5 +31,13 @@ public class UserRepository {
         return userMapper.getUserByUserId(userId);
     }
 
+    public int editUser(User user) {
+        return userMapper.editUser(user);        //mapper의 editUser 결과 -> int 리턴
+    }
+
+    public int removeUser(Integer userId) {
+        return userMapper.removeUser(userId);
+    }
+
 
 }
