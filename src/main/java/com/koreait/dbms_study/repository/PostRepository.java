@@ -18,15 +18,17 @@ public class PostRepository {
 
     //게시물 추가
     public int addPost(Post post) {
-
-        return postMapper.insert(post);
+        int result = postMapper.addPost(post);
+        return result;
     }
 
     //게시물 전체 조회
     public List<Post> getPostList() {
-
-        return postMapper.getPostList();
+        List<Post> postList = postMapper.getPostList();
+        return postList;
     }
+
+
 
     //게시물 단건 조회
     public Optional<Post> getPostByPostId(Integer postId) {
@@ -34,8 +36,20 @@ public class PostRepository {
         return postMapper.getPostByPostId(postId);
     }
 
+//    public Post getPostByPostId(Integer postId) {
+//      Post post = postMapper.getPostByPostId(postId);
+//      return post;
+//
+//    }
+
     //게시물 수정
     public int editPost(Post post) {
         return postMapper.editPost(post);
+    }
+
+    //게시물 삭제
+    public int removePost(Integer postId) {
+        int result = postMapper.removePost(postId);
+        return result;
     }
 }

@@ -71,6 +71,7 @@ public class UserService {
 //        return new ApiResDto<>("성공적으로 수정이 완료됨", null);
     }
 
+    //게시물 삭제
     public ApiResDto<Integer> removeUser(Integer userId) {
         Optional<User> user = userRepository.getUserByUserId(userId);
         if(user.isEmpty()) {

@@ -17,7 +17,9 @@ public interface PostMapper {
     int insert (Post post);
 
     //post 추가 -> 전달받은 AddPostReqDto DTO를 받아서 DB에 게시물을 추가
-    int addPost(AddPostReqDto addPostReqDto);
+//    int addPost(AddPostReqDto addPostReqDto);
+    int addPost(Post post);
+    //reqdto / post 뭘 받아야하는지???
 
     //게시물 전체 조회 -> PostResponseDto 타입 객체를 여러 개 담은 리스트
     List<Post> getPostList();
@@ -25,5 +27,9 @@ public interface PostMapper {
     //게시물 단건 조회 (postId 이용)
     Optional<Post> getPostByPostId(Integer postId);
 
+    //게시물 수정
     int editPost(Post post);
+
+    //게시물 삭제
+    int removePost(Integer postId);
 }

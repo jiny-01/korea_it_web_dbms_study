@@ -27,19 +27,36 @@ public class PostController {
     // 게시물 전체 조회
     @GetMapping("/get/list")
     public ResponseEntity<?> getPostList() {
-
         return ResponseEntity.ok(postService.getPostList());
     }
 
     // 게시물 단건 조회 (쿼리스트링 방식)
-    @GetMapping("/get")
-    public ResponseEntity<?> getPostByPostId(@RequestParam Integer postId) {
+//    @GetMapping("/get")
+//    public ResponseEntity<?> getPostByPostId(@RequestParam Integer postId) {
+//        return ResponseEntity.ok(postService.getPostByPostId(postId));
+//    }
+
+
+    //게시물 단건 조회 (pathvariable방식)
+    //예시 : localhost:8080/post/get/1  -->  요청할 때 바로 postId 받음
+    @GetMapping("/get/{postId}")
+    public ResponseEntity<?> getPostByPostId(@PathVariable Integer postId){
         return ResponseEntity.ok(postService.getPostByPostId(postId));
     }
+
 
     //게시물 수정
     @PostMapping("/edit")
     public ResponseEntity<?> editPost(@RequestBody EditPostReqDto editPostReqDto) {
         return ResponseEntity.ok(postService.editPost(editPostReqDto));
     }
+
+    //게시물 삭제
+    @GetMapping("/remove")
+    public ResponseEntity<?> removePost(@RequestParam Integer postId) {
+        return ResponseEntity.ok(postService.removePost(postId));
+    }
+
+
+
 }
