@@ -21,10 +21,10 @@ public class PostService {
         Map<String, String> addResult = new HashMap<>();
         int result = postRepository.addPost(addPostReqDto.toEntity());
         if(result == 0) {
-            addResult.put("status", "게시물 추가성공");
+            addResult.put("status", "게시물 추가실패- 다시 시도");
             return addResult;
         }
-        addResult.put("message", "게시물 추가 실패");
+        addResult.put("message", "게시물 추가 성공");
         return addResult;
     }
 
