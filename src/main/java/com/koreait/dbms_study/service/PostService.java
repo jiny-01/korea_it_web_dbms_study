@@ -1,9 +1,6 @@
 package com.koreait.dbms_study.service;
 
-import com.koreait.dbms_study.dto.AddPostReqDto;
-import com.koreait.dbms_study.dto.ApiResDto;
-import com.koreait.dbms_study.dto.PostRespDto;
-import com.koreait.dbms_study.dto.ResponseDto;
+import com.koreait.dbms_study.dto.*;
 import com.koreait.dbms_study.entity.Post;
 import com.koreait.dbms_study.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +44,20 @@ public class PostService {
         }
         response.put("post", post);
         return response;
+    }
+
+    //게시물 수정
+    public ResponseDto<Post> editPost(EditPostReqDto editPostReqDto) {
+
+        Optional<Post> post = postRepository.getPostByPostId(editPostReqDto.getPostId());
+
+        if (post.isEmpty()) {
+            return new ResponseDto<>("게시물을 찾을 수 없음", null);
+        }
+        postRepository.editPost(editPostReqDto.toEntity());
+
+        return new ResponseDto<>("게시물 수정 성공", null);
+
     }
 
 

@@ -1,6 +1,8 @@
 package com.koreait.dbms_study.controller;
 
 import com.koreait.dbms_study.dto.AddPostReqDto;
+import com.koreait.dbms_study.dto.EditPostReqDto;
+import com.koreait.dbms_study.dto.EditUserReqDto;
 import com.koreait.dbms_study.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +34,11 @@ public class PostController {
     @GetMapping("/get")
     public ResponseEntity<?> getPostByPostId(@RequestParam Integer postId) {
         return ResponseEntity.ok(postService.getPostByPostId(postId));
+    }
+
+    //게시물 수정
+    @PostMapping("/edit")
+    public ResponseEntity<?> editPost(@RequestBody EditPostReqDto editPostReqDto) {
+        return ResponseEntity.ok(postService.editPost(editPostReqDto));
     }
 }

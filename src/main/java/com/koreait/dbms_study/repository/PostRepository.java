@@ -16,17 +16,26 @@ public class PostRepository {
     @Autowired
     private PostMapper postMapper;
 
+    //게시물 추가
     public int addPost(Post post) {
 
         return postMapper.insert(post);
     }
 
+    //게시물 전체 조회
     public List<Post> getPostList() {
+
         return postMapper.getPostList();
     }
 
-
+    //게시물 단건 조회
     public Optional<Post> getPostByPostId(Integer postId) {
+
         return postMapper.getPostByPostId(postId);
+    }
+
+    //게시물 수정
+    public int editPost(Post post) {
+        return postMapper.editPost(post);
     }
 }

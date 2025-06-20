@@ -1,6 +1,7 @@
 package com.koreait.dbms_study.mapper;
 
 import com.koreait.dbms_study.dto.AddPostReqDto;
+import com.koreait.dbms_study.dto.EditPostReqDto;
 import com.koreait.dbms_study.dto.PostRespDto;
 import com.koreait.dbms_study.entity.Post;
 import com.koreait.dbms_study.entity.User;
@@ -24,4 +25,5 @@ public interface PostMapper {
     //게시물 단건 조회 (postId 이용)
     Optional<Post> getPostByPostId(Integer postId);
 
+    int editPost(Post post);
 }
