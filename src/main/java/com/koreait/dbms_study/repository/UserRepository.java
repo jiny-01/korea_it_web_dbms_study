@@ -20,22 +20,27 @@ public class UserRepository {
     private UserMapper userMapper;
 
     public int addUser(User user) {
+
         return userMapper.insert(user);         //insert 실행한 결과물 바로 리턴
     }
 
     public List<User> getUserList() {
+
         return userMapper.getUserList();
     }
 
     public Optional<User> getUserByUserId(Integer userId) {
+
         return userMapper.getUserByUserId(userId);
     }
 
     public int editUser(User user) {
+
         return userMapper.editUser(user);        //mapper의 editUser 결과 -> int 리턴
     }
 
     public int removeUser(Integer userId) {
+
         return userMapper.removeUser(userId);
     }
 

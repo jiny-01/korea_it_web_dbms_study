@@ -1,12 +1,18 @@
 package com.koreait.dbms_study.service;
 
 import com.koreait.dbms_study.dto.AddPostReqDto;
+import com.koreait.dbms_study.dto.ApiResDto;
+import com.koreait.dbms_study.dto.PostRespDto;
+import com.koreait.dbms_study.dto.ResponseDto;
+import com.koreait.dbms_study.entity.Post;
 import com.koreait.dbms_study.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -25,5 +31,28 @@ public class PostService {
         return addResult;
     }
 
+    //게시물 전체 조회
+    public List<Post> getPostList() {
+        return postRepository.getPostList();
+    }
 
-}
+    //게시물 단건 조회
+    public Map<String, Object> getPostByPostId(Integer postId) {
+        Map<String, Object> response = new HashMap<>();
+
+        Optional<Post> post = postRepository.getPostByPostId(postId);
+
+        if (post.isEmpty()) {
+            response.put("message", "게시물을 찾을 수 없습니다.");
+        }
+        response.put("post", post);
+        return response;
+    }
+
+
+
+
+
+
+    }
+

@@ -34,6 +34,7 @@ public class UserService {
     }
 
     public List<User> getUserList() {
+
         return userRepository.getUserList();
     }
 
