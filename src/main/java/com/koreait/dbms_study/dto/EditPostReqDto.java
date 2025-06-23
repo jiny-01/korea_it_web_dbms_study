@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EditPostReqDto {
-    private int postId;
+    private Integer postId;
     private String title;
     private String content;
 

@@ -51,6 +51,8 @@ public class PostController {
         return ResponseEntity.ok(postService.editPost(editPostReqDto));
     }
 
+
+
     //게시물 삭제
     @GetMapping("/remove")
     public ResponseEntity<?> removePost(@RequestParam Integer postId) {
